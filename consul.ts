@@ -20,6 +20,7 @@ export class Consul{
     getAddress(){
         return this.address
     }
+    
     async getMember(){
         try {
             const response = await fetch(this.address+"/v1/agent/members", {

@@ -1,4 +1,4 @@
-import { Consul, ConsulClient, ConsulKV } from "../mod.ts"
+import { Consul, ConsulClient, ConsulKV, DefaultConfig} from "../mod.ts"
 
 const consulConfig = <ConsulClient>{
     hostname : "localhost",
@@ -9,6 +9,7 @@ var data = <ConsulKV>{
     Value: "bar"
 }
 const consul = new Consul(consulConfig);
+//const consul = new Consul(DefaultConfig())
 await consul.getMember();
 await consul.putKey(data)
 let result = await consul.getValue("foo")
