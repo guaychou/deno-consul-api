@@ -11,5 +11,5 @@ var data = <ConsulKV>{
 const consul = new Consul(consulConfig);
 await consul.getMember();
 await consul.putKey(data)
-let result = await consul.getValue("chibai")
+let result = await consul.getValue("foo")
 console.log(result)
