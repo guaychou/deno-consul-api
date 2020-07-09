@@ -1,5 +1,7 @@
 import {ConsulClient} from "./client.ts"
 import {ConsulKV, ConsulKVArray} from "./kv.ts"
+import {ServiceConfig} from "./service.ts"
+
 export class Consul{
     hostname: string;
     port: number;
@@ -41,7 +43,7 @@ export class Consul{
         }
   }
   
-  async putKey(data: ConsulKV){
+  async putKey(data: ConsulKV):Promise<boolean>{
       try {
         const response = await fetch(this.address+"/v1/kv/"+data.Key,{
             method: 'PUT',
@@ -53,11 +55,12 @@ export class Consul{
         if (response.body !== null) {
             const body = new Uint8Array(await response.arrayBuffer());
             var bodyString = new TextDecoder("utf-8").decode(body);
-            console.log(bodyString)
+            return JSON.parse(bodyString)
         }
       }catch(e){
         throw(e)
       }
+      return false
   }
   async getValue(data: string) :Promise <string>{
       try {
@@ -77,5 +80,26 @@ export class Consul{
         throw(e)
       }
       return ""
+  }
+  async registerService(service: ServiceConfig){
+    try{
+        const response = await fetch(this.address+"/v1/agent/service/register?replace-existing-checks=true",{
+            method: 'PUT',
+            headers: {
+                'X-Consul-Token': this.token,
+            },
+            body: JSON.stringify(service)            
+        });
+        if (response.ok){
+            if (response.body!=null) {
+                const body = new Uint8Array(await response.arrayBuffer());
+                var bodyString = new TextDecoder("utf-8").decode(body);
+                console.log(bodyString)
+            }
+        }
+        console.log(JSON.stringify(service))
+    }catch(e){
+        throw(e)
+    }
   }
 }
