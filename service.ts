@@ -35,7 +35,9 @@ export class ConsulService implements ServiceConfig {
         this.Tags=serviceConfig.Tags
         this.Check=serviceConfig.Check
         this.Check.Name=serviceConfig.Name
-        this.Check.HTTP=serviceConfig.Address
     }
+}
 
+export interface CatalogService {
+    [index: string]: string[];
 }

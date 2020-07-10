@@ -78,3 +78,11 @@ newservice.Check.DeregisterCriticalServiceAfter="10m"
 await consul.registerService(newservice);
 
 ```
+
+
+Get Consul Catalog 
+```
+await consul.getServiceCatalog().then((res)=>{
+    console.log(res)
+})
+```

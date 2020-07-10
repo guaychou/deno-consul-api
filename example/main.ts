@@ -24,13 +24,18 @@ newservice.Check.Interval="10s"
 newservice.Check.DeregisterCriticalServiceAfter="10m"
 
 const consul = new Consul(consulConfig);
-await consul.registerService(newservice);
+//await consul.registerService(newservice);
 
-await consul.getMember();
-await consul.putKey(data).then((res:boolean)=>{
+//await consul.getMember();
+//await consul.putKey(data).then((res:boolean)=>{
+    //console.log(res)
+//})
+
+await consul.getValue("foo").then((res:string)=>{
     console.log(res)
 })
 
-await consul.getValue("foo").then((res:string)=>{
+
+await consul.getServiceCatalog().then((res)=>{
     console.log(res)
 })

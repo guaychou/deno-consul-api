@@ -1,6 +1,6 @@
 import {ConsulClient} from "./client.ts"
 import {ConsulKV, ConsulKVArray} from "./kv.ts"
-import {ServiceConfig} from "./service.ts"
+import {ServiceConfig, CatalogService} from "./service.ts"
 
 export class Consul{
     hostname: string;
@@ -81,6 +81,7 @@ export class Consul{
       }
       return ""
   }
+
   async registerService(service: ServiceConfig){
     try{
         const response = await fetch(this.address+"/v1/agent/service/register?replace-existing-checks=true",{
@@ -102,4 +103,28 @@ export class Consul{
         throw(e)
     }
   }
-}
+
+  async getServiceCatalog():Promise <CatalogService>{
+      let bodyjson: CatalogService = {}
+      try {
+          const response = await fetch(this.address+"/v1/catalog/services",{
+              method:'GET',
+              headers: {
+                'X-Consul-Token': this.token,
+              }
+            });
+            if (response.ok){
+                if (response.body!=null){
+                    const body = new Uint8Array(await response.arrayBuffer());
+                    var bodyString = new TextDecoder("utf-8").decode(body);
+                    bodyjson = JSON.parse(bodyString)
+                    return bodyjson
+                }
+            }
+          }catch(e){
+            throw (e)
+          }
+           return bodyjson
+      }
+      
+  }
