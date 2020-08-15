@@ -18,6 +18,11 @@ Feel Free to Contribute thank you
 
 ## Example 
 
+### How to Import 
+```
+import { Consul, ConsulClient, ConsulKV, DefaultConfig, ServiceConfig, ConsulService, Check } from "https://raw.githubusercontent.com/guaychou/deno-consul-api/master/mod.ts"
+```
+
 Client configuration
 ```
 const consulConfig = <ConsulClient>{
