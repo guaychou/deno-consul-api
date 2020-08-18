@@ -1,6 +1,6 @@
 # Deno Consul Client API
 
-This is repo for deno consul client 
+This is unonfficially repository of [Consul by Hashicorp](https://www.consul.io/) client for Deno
 
 Funcional
 - KV Store
