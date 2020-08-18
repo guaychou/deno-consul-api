@@ -61,7 +61,7 @@ await consul.putKey(data).then((res:boolean)=>{
 })
 ```
 
-Register Service and Configuring HealthCheck
+#### Register Service and Configuring HealthCheck
 
 ```
 var check = <Check>{
@@ -85,7 +85,7 @@ await consul.registerService(newservice.serviceConf);
 ```
 
 
-Get Consul Catalog 
+#### Get Consul Catalog 
 ```
 await consul.getServiceCatalog().then((res)=>{
     console.log(res)
