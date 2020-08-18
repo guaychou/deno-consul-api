@@ -27,7 +27,7 @@ import { Consul, ConsulClient, ConsulKV, ClientDefaultConfig, ServiceConfig, Con
 
 #### Safe Import 
 ```
-import { Consul, ConsulClient, ConsulKV, ClientDefaultConfig, ServiceConfig, ConsulService, Check } from "https://deno.land/x/consul@v0.4/mod.ts"
+import { Consul, ConsulClient, ConsulKV, ClientDefaultConfig, ServiceConfig, ConsulService, Check } from "https://deno.land/x/consul@v0.0.2/mod.ts"
 ```
 
 #### Client configuration
