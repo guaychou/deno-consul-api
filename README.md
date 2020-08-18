@@ -19,8 +19,15 @@ Feel Free to Contribute thank you
 ## Example 
 
 ### How to Import 
+
+#### Latest version import
 ```
-import { Consul, ConsulClient, ConsulKV, ClientDefaultConfig, ServiceConfig, ConsulService, Check } from "https://deno.land/x/consul@v0.2/mod.ts"
+import { Consul, ConsulClient, ConsulKV, ClientDefaultConfig, ServiceConfig, ConsulService, Check } from "https://deno.land/x/consul/mod.ts"
+```
+
+#### Safe Import 
+```
+import { Consul, ConsulClient, ConsulKV, ClientDefaultConfig, ServiceConfig, ConsulService, Check } from "https://deno.land/x/consul@v0.4/mod.ts"
 ```
 
 #### Client configuration
