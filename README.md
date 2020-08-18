@@ -7,6 +7,7 @@ Funcional
 - Get Members Node
 - Service Registration
 - Get Service
+- Support Consul Token
 
 To Do: 
 - TLS consul config
