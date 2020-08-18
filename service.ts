@@ -20,24 +20,12 @@ export interface Check {
     Header: string;
 }
 
-export class ConsulService implements ServiceConfig {
-    ID: string;
-    Name: string;
-    Port: number;
-    Address: string;
-    Tags: [string];
-    Check: Check;
+export class ConsulService {
+    serviceConf: ServiceConfig;
     constructor(serviceConfig: ServiceConfig) {
-        this.ID=serviceConfig.ID
-        this.Name=serviceConfig.Name
-        this.Port=serviceConfig.Port
-        this.Address=serviceConfig.Address
-        this.Tags=serviceConfig.Tags
-        this.Check=serviceConfig.Check
-        this.Check.Name=serviceConfig.Name
+        this.serviceConf=serviceConfig
     }
 }
-
 export interface CatalogService {
     [index: string]: string[];
 }

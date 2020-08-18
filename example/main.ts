@@ -1,4 +1,4 @@
-import { Consul, ConsulClient, ConsulKV, DefaultConfig, ServiceConfig, ConsulService, Check } from "https://raw.githubusercontent.com/guaychou/deno-consul-api/master/mod.ts"
+import { Consul, ConsulClient, ConsulKV, ClientDefaultConfig, ServiceConfig, ConsulService, Check } from "../mod.ts"
 
 const consulConfig = <ConsulClient>{
     hostname : "localhost",
@@ -6,9 +6,15 @@ const consulConfig = <ConsulClient>{
 }
 var data = <ConsulKV>{
     Key: "foo",
-    Value: "bar"
+    Value: "testing"
 }
-var check = <Check>{}
+var check = <Check>{
+    HTTP : "http://localhost:8080",
+    Method: "GET",
+    Interval: "10s",
+    DeregisterCriticalServiceAfter: "5m"
+
+}
 var service = <ServiceConfig> {
     ID: "test",
     Name: "test-service",
@@ -18,15 +24,9 @@ var service = <ServiceConfig> {
     Check: check
 }
 const newservice= new ConsulService(service);
-newservice.Check.HTTP="http://localhost:8080"
-newservice.Check.Method="GET"
-newservice.Check.Interval="10s"
-newservice.Check.DeregisterCriticalServiceAfter="10m"
-
-const consul = new Consul(DefaultConfig());
-//await consul.registerService(newservice);
-
-//await consul.getMember();
+const consul = new Consul(ClientDefaultConfig());
+await consul.registerService(newservice.serviceConf);
+await consul.getMember();
 await consul.putKey(data).then((res:boolean)=>{
   console.log(res)
 })
@@ -34,7 +34,6 @@ await consul.putKey(data).then((res:boolean)=>{
 await consul.getValue("foo").then((res:string)=>{
     console.log(res)
 })
-
 
 await consul.getServiceCatalog().then((res)=>{
     console.log(res)

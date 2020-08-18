@@ -20,7 +20,7 @@ Feel Free to Contribute thank you
 
 ### How to Import 
 ```
-import { Consul, ConsulClient, ConsulKV, DefaultConfig, ServiceConfig, ConsulService, Check } from "https://raw.githubusercontent.com/guaychou/deno-consul-api/master/mod.ts"
+import { Consul, ConsulClient, ConsulKV, DefaultConfig, ServiceConfig, ConsulService, Check } from "https://deno.land/x/consul@v0.2/mod.ts"
 ```
 
 Client configuration
