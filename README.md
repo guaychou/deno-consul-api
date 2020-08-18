@@ -6,10 +6,9 @@ Funcional
 - KV Store
 - Get Members Node
 - Service Registration
-
+- Get Service
 
 To Do: 
-- Get Service
 - TLS consul config
 - etc
 
