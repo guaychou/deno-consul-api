@@ -31,7 +31,7 @@ import { Consul, ConsulClient, ConsulKV, ClientDefaultConfig, ServiceConfig, Con
 ```
 
 #### Client configuration
-```
+```typescript
 const consulConfig = <ConsulClient>{
     hostname : "localhost",
     port     : 8080,
@@ -41,7 +41,7 @@ const consul = new Consul(consulConfig);
 ```
 
 #### Get Consul Value 
-```
+```typescript
 const consulConfig = <ConsulClient>{
     hostname : "localhost",
     port     : 8080,
@@ -53,7 +53,7 @@ await consul.getValue("foo").then((res:string)=>{
 })
 ```
 #### Set Key Value 
-```
+```typescript
 const consulConfig = <ConsulClient>{
     hostname : "localhost",
     port     : 8080,
@@ -71,7 +71,7 @@ await consul.putKey(data).then((res:boolean)=>{
 
 #### Register Service and Configuring HealthCheck
 
-```
+```typescript
 var check = <Check>{
     HTTP : "http://localhost:8080",
     Method: "GET",
@@ -94,7 +94,7 @@ await consul.registerService(newservice.serviceConf);
 
 
 #### Get Consul Catalog 
-```
+```typescript
 await consul.getServiceCatalog().then((res)=>{
     console.log(res)
 })
